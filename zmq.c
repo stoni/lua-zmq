@@ -94,6 +94,7 @@ static int Lzmq_init(lua_State *L)
     zmq_ptr *ctx = lua_newuserdata(L, sizeof(zmq_ptr));
     luaL_getmetatable(L, MT_ZMQ_CONTEXT);
     lua_setmetatable(L, -2);
+	int io_threads;
 
     if (lua_islightuserdata(L, 1)) {
         // Treat a light userdata as a raw ZMQ context object, which
@@ -105,7 +106,7 @@ static int Lzmq_init(lua_State *L)
         return 1;
     }
 
-    int io_threads = luaL_checkint(L, 1);
+    io_threads = luaL_checkint(L, 1);
 
     ctx->ptr = zmq_init(io_threads);
 
@@ -413,6 +414,7 @@ static int Lzmq_send(lua_State *L)
     size_t msg_size;
     const char *data = luaL_checklstring(L, 2, &msg_size);
     int flags = luaL_optint(L, 3, 0);
+	int rc;
 
     zmq_msg_t msg;
     if(zmq_msg_init_size(&msg, msg_size) != 0) {
@@ -420,7 +422,7 @@ static int Lzmq_send(lua_State *L)
     }
     memcpy(zmq_msg_data(&msg), data, msg_size);
 
-    int rc = zmq_send(s->ptr, &msg, flags);
+    rc = zmq_send(s->ptr, &msg, flags);
 
     if(zmq_msg_close(&msg) != 0) {
         return Lzmq_push_error(L);
