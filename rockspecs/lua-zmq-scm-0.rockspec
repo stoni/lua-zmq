@@ -1,11 +1,11 @@
 package = "lua-zmq"
 version = "scm-0"
 source = {
-   url = "git://github.com/iamaleksey/lua-zmq.git"
+   url = "git://github.com/stoni/lua-zmq.git"
 }
 description = {
    summary = "Lua bindings to zeromq2",
-   homepage = "http://github.com/iamaleksey/lua-zmq",
+   homepage = "http://github.com/stoni/lua-zmq",
    license = "MIT/X11"
 }
 dependencies = {
