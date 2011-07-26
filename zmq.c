@@ -91,10 +91,10 @@ static int Lzmq_push_error(lua_State *L)
 
 static int Lzmq_init(lua_State *L)
 {
+	int io_threads;
     zmq_ptr *ctx = lua_newuserdata(L, sizeof(zmq_ptr));
     luaL_getmetatable(L, MT_ZMQ_CONTEXT);
     lua_setmetatable(L, -2);
-	int io_threads;
 
     if (lua_islightuserdata(L, 1)) {
         // Treat a light userdata as a raw ZMQ context object, which
