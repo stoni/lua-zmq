@@ -11,12 +11,20 @@ description = {
 dependencies = {
    "lua >= 5.1"
 }
+external_dependencies = {
+   ZEROMQ = {
+      header = "zmq.h",
+	  library = "libzmq"
+   }
+}
 build = {
    type = "builtin",
    modules = {
      zmq = {
        sources = {"zmq.c"},
-       libraries = {"zmq"}
+       libraries = {"zmq"},
+	   incdirs = {"$(ZEROMQ_INCDIR)"},
+       libdirs = {"$(ZEROMQ_LIBDIR)"}
      }
    }
 }
