@@ -22,7 +22,7 @@ build = {
    modules = {
      zmq = {
        sources = {"zmq.c"},
-       libraries = {"zmq"},
+       libraries = {"libzmq"},
 	   incdirs = {"$(ZEROMQ_INCDIR)"},
        libdirs = {"$(ZEROMQ_LIBDIR)"}
      }
