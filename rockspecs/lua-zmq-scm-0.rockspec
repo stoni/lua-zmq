@@ -12,13 +12,15 @@ dependencies = {
    "lua >= 5.1"
 }
 external_dependencies = {
-   ZEROMQ = {
-      platforms = {
-        unix = {
-          header = "zmq.h",
-	  library = "zmq"
-        },
-        win32 = {
+   platforms = {
+     unix = {
+       ZEROMQ = {
+         header = "zmq.h",
+	 library = "zmq"
+       }
+      },
+      win32 = {
+        ZEROMQ = { 
           header = "zmq.h",
           library = "libzmq"
         }
