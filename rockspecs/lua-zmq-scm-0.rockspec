@@ -28,13 +28,29 @@ external_dependencies = {
    }
 }
 build = {
-   type = "builtin",
-   modules = {
-     zmq = {
-       sources = {"zmq.c"},
-       libraries = {"libzmq"},
+   platforms = {
+     unix = {
+       type = "builtin",
+       modules = {
+         zmq = {
+           sources = {"zmq.c"},
+           libraries = {"zmq"},
 	   incdirs = {"$(ZEROMQ_INCDIR)"},
-       libdirs = {"$(ZEROMQ_LIBDIR)"}
+           libdirs = {"$(ZEROMQ_LIBDIR)"}
+         }
+       }
+     },
+     win32 = {
+       type = "builtin",
+       modules = {
+         zmq = {
+           sources = {"zmq.c"},
+           libraries = {"libzmq"},
+           incdirs = {"$(ZEROMQ_INCDIR)"},
+           libdirs = {"$(ZEROMQ_LIBDIR)"}
+         }
+       }
      }
    }
 }
+     
