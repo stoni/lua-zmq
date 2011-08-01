@@ -13,8 +13,16 @@ dependencies = {
 }
 external_dependencies = {
    ZEROMQ = {
-      header = "zmq.h",
-	  library = "libzmq"
+      platforms = {
+        unix = {
+          header = "zmq.h",
+	  library = "zmq"
+        },
+        win32 = {
+          header = "zmq.h",
+          library = "libzmq"
+        }
+      }
    }
 }
 build = {
